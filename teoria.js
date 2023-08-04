@@ -1142,6 +1142,7 @@ clasificarValor (9);
 // #endregion
 
 
+
 //-------------------------------------------------------------------
 /*4-ENCADENAS SENTENCIAS IF...ELSE*/ 
 //------------------------------------------------------------------
@@ -1233,26 +1234,26 @@ puntuajeGolpes (4,7); //GO HOME
 //Versión F(x) con RETURN
 function puntuajeGolpesReturn (par, golpes) {
     if (golpes == 1) {
-        return "De 1 golpe, HOLE-IN-ONE";
+        return "De 1 golpe con Return, HOLE-IN-ONE";
     } else if ( golpes <= (par - 2)) {
-        return "<= que PAR - 2, EAGLE";
+        return "<= que PAR - 2 con Return, EAGLE";
     } else if ( golpes == (par - 1)) {
-        return "= que PAR, BIRDIE";
+        return "= que PAR con Return, BIRDIE";
     } else if ( golpes == par) {
-        return "= que PAR, PAR";
+        return "= que PAR con Return, PAR";
     } else if ( golpes == (par + 1)) {
-        return "= que PAR + 1, BOGEY";
+        return "= que PAR + 1 con Return, BOGEY";
     } else if ( golpes == (par + 2)) {
-        return "= que PAR + 2, DOUBLE BOGEY";
+        return "= que PAR + 2 con Return, DOUBLE BOGEY";
     } else {
-        return "= que PAR + 3, GO HOME";
+        return "= que PAR + 3 con Return, GO HOME";
     }
 }
 
-puntuajeGolpes (4,1); //HOLE-IN-ONE
-puntuajeGolpes (4,4); //EAGLE
-puntuajeGolpes (4,6); //DOUBLE BOGEY
-puntuajeGolpes (4,7); //GO HOME
+console.log(puntuajeGolpesReturn (4,1)); //HOLE-IN-ONE
+console.log(puntuajeGolpesReturn (4,4)); //EAGLE
+console.log(puntuajeGolpesReturn (4,6)); //DOUBLE BOGEY
+console.log(puntuajeGolpesReturn (4,7)); //GO HOME
 
 //Con la ESTRUCTURA de SWITCH el orden de evaluación de condiciones ya no es relevante. 
 
@@ -1260,25 +1261,25 @@ puntuajeGolpes (4,7); //GO HOME
 function puntuajeGolpesSwitch(par, golpes) {
     switch (golpes) {
         case 1:
-            console.log("De 1 golpe, HOLE-IN-ONE");
+            console.log("De 1 golpe con Switch, HOLE-IN-ONE");
             break; //Si no hay RETURN (que termina la f(x)), necesito BREAK que termine la f(x)
         case par:
-            console.log("= que PAR, PAR");
+            console.log("= que PAR con Switch, PAR");
             break; //Si no hay RETURN (que termina la f(x)), necesito BREAK que termine la f(x)
         case par - 1:
-            console.log("= que PAR - 1, BIRDIE");
+            console.log("= que PAR - 1 con Switch, BIRDIE");
             break; //Si no hay RETURN (que termina la f(x)), necesito BREAK que termine la f(x)
         case par - 2:
-            console.log("= que PAR - 2, EAGLE");
+            console.log("= que PAR - 2 con Switch, EAGLE");
             break; //Si no hay RETURN (que termina la f(x)), necesito BREAK que termine la f(x)
         case par + 1:
-            console.log("= que PAR + 1, BOGEY");
+            console.log("= que PAR + 1 con Switch, BOGEY");
             break; //Si no hay RETURN (que termina la f(x)), necesito BREAK que termine la f(x)
         case par + 2: 
-            console.log("= que PAR + 2, DOUBLE BOGEY");
+            console.log("= que PAR + 2 con Switch, DOUBLE BOGEY");
             break; //Si no hay RETURN (que termina la f(x)), necesito BREAK que termine la f(x)
         default:
-            console.log("= que PAR + 3, GO HOME");
+            console.log("= que PAR + 3 con Switch, GO HOME");
             break; //Si no hay RETURN (que termina la f(x)), necesito BREAK que termine la f(x)
     }
 }
@@ -1292,26 +1293,26 @@ puntuajeGolpesSwitch (4,7); //GO HOME
 function puntuajeGolpesSwitchReturn(par, golpes) {
     switch (golpes) {
         case 1:
-            return "De 1 golpe, HOLE-IN-ONE"; //RETURN finaliza F(x), no necesito BREAK
+            return "De 1 golpe con SwitchReturn, HOLE-IN-ONE"; //RETURN finaliza F(x), no necesito BREAK
         case par:
             return "= que PAR, PAR";
         case par - 1:
-            return "= que PAR - 1, BIRDIE";
+            return "= que PAR - 1 SwitchReturn, BIRDIE";
         case par - 2:
-            return "= que PAR - 2, EAGLE";
+            return "= que PAR - 2 SwitchReturn, EAGLE";
         case par + 1:
-            return "= que PAR + 1, BOGEY";
+            return "= que PAR + 1 SwitchReturn, BOGEY";
         case par + 2:
-            return "= que PAR + 2, DOUBLE BOGEY";
+            return "= que PAR + 2 SwitchReturn, DOUBLE BOGEY";
         default:
-            return "= que PAR + 3, GO HOME";
+            return "= que PAR + 3 SwitchReturn, GO HOME";
     }
 }
 
-puntuajeGolpesSwitchReturn (4,1); //HOLE-IN-ONE
-puntuajeGolpesSwitchReturn (4,4); //EAGLE
-puntuajeGolpesSwitchReturn (4,6); //DOUBLE BOGEY
-puntuajeGolpesSwitchReturn (4,7); //GO HOME
+console.log(puntuajeGolpesSwitchReturn (4,1)); //HOLE-IN-ONE
+console.log(puntuajeGolpesSwitchReturn (4,4)); //EAGLE
+console.log(puntuajeGolpesSwitchReturn (4,6)); //DOUBLE BOGEY
+console.log(puntuajeGolpesSwitchReturn (4,7)); //GO HOME
 
 // #endregion
 
@@ -1321,6 +1322,45 @@ puntuajeGolpesSwitchReturn (4,7); //GO HOME
 console.log('\n6-SWITCH');
 
 // #region
+
+// F(x) que clasifica según el valor (1, 2, 3) responde cadena texto, la cual retornaremos y mostraremos por consola
+function clasificarValorSwitch (valor) {
+    var respuestaSwitch;
+    switch (valor) {
+        case 1: //Case donde valor = 1
+            respuestaSwitch = "Si valor = 1, Yo soy el ALPHA";
+            break; //break para que no siga leyendo case 2, case 3, y salte a return respuestaSwitch
+        case 2: //Case donde valor = 2
+            respuestaSwitch = "Si valor = 2, Yo soy el BETA";
+            break;
+        case 3: //Case donde valor = 3
+            respuestaSwitch = "Si valor = 3, Yo soy el GANMA";
+            break;
+    }
+    return respuestaSwitch;
+}
+
+console.log(clasificarValorSwitch(1));
+console.log(clasificarValorSwitch(2));
+
+
+// Ejemplo con cadenas caracteres, donde partirmos de que comida = "hamburgesa"
+var comidaSwitch = "hamburguesa";
+console.log("Hoy solo tenemos " + comidaSwitch)
+
+//Swich irá por defecto al case "hamburguesa"
+switch (comidaSwitch) { 
+    case "pizza": // Case donde comida = "pizza"
+        console.log ("comida = pizza, 30 euros");
+        break; //Break finaliza el código aquí, y salta fuera del switch
+    case "hamburguesa": // Case donde comida = "hamburguesa"
+        console.log ("comida = hamburguesa, 100 euros");
+        break; //Break finaliza el código aquí, y salta fuera del switch
+    case "zanahoria": // Case donde comida = "zanahoria"
+        console.log ("comida = zanahoria, 5 euros");
+        break; //Break finaliza el código aquí, y salta fuera del switch
+}
+
 
 // #endregion
 
