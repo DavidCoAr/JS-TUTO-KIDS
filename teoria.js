@@ -1142,7 +1142,6 @@ clasificarValor (9);
 // #endregion
 
 
-
 //-------------------------------------------------------------------
 /*4-ENCADENAS SENTENCIAS IF...ELSE*/ 
 //------------------------------------------------------------------
@@ -1364,11 +1363,676 @@ switch (comidaSwitch) {
 
 // #endregion
 
+//-------------------------------------------------------------------
+/*7-SWITCH: OPCIÓN PREDETERMINADA*/ 
+//------------------------------------------------------------------
+console.log('\n7-SWITCH: OPCIÓN PREDETERMINADA');
 
 // #region
+
+function seleccionaIdioma (valor) {
+    var idioma;
+    switch (valor) {
+        case 1:
+            idioma = "Valor = 1, Español";
+            break; //Break para finalizar la ejecución aquí y saltar fuera del switch
+        case 2:
+            idioma = "Valor = 2, Italiano";
+            break; //Break para finalizar la ejecución aquí y saltar fuera del switch
+        default:
+            idioma = "Elige un valor entre 1 y 2";
+            break; //Break (opcional, por si no es la última línea del Switch) para finalizar la ejecución aquí y saltar fuera del switch
+    }
+    return idioma;
+}
+
+console.log("Selecciono el valor 2, entonces... " + seleccionaIdioma(2) );
+console.log("Selecciono el valor 3, entonces... " + seleccionaIdioma(3) );
+// #endregion
+
+//-------------------------------------------------------------------
+/*8-SWITCH: MÚLTIPLES CASOS*/ 
+//------------------------------------------------------------------
+console.log('\n8-SWITCH: MÚLTIPLES CASOS');
+
+// #region
+
+// Si hay múltiples casos que tienen asociado el mismo código
+function seleccionaIdioma (valor) {
+    var idioma;
+    switch (valor) {
+        case 1:
+            idioma = "Valor = 1, Inglés";
+            break; //Break para finalizar la ejecución aquí y saltar fuera del switch
+        case 2: // Si valor = 2 o Valor = 3,
+        case 3:
+        case 4:    
+            idioma = "Valor = 2 o Valor = 3 o Valor = 4, Alemán";
+            break; //Break para finalizar la ejecución aquí y saltar fuera del switch
+        default:
+            idioma = "Elige un valor entre 1 y 4";
+            break; //Break (opcional, por si no es la última línea del Switch) para finalizar la ejecución aquí y saltar fuera del switch
+    }
+    return idioma;
+}
+
+console.log("Selecciono el valor 2, entonces... " + seleccionaIdioma(2) );
+console.log("Selecciono el valor 3, entonces... " + seleccionaIdioma(3) );
+console.log("Selecciono el valor 3, entonces... " + seleccionaIdioma(5) );
+// #endregion
+
+//-------------------------------------------------------------------
+/*9-REEMPLAZAR IF ELSE POR SWITCH*/ 
+//------------------------------------------------------------------
+console.log('\n9-REEMPLAZAR IF ELSE POR SWITCH');
+
+// #region
+
+function seleccionarConsola (valor){
+    var consola;
+    if (valor == 1) {
+        consola = "Valor es 1, compro Ps5";
+    } else if (valor == 2) {
+        consola = "Valor es 2, compro Series X";
+    } else if (valor == 3) {
+        consola = "Valor es 3, compro Series S";
+    } else {
+        consola = "No se cumple ninguna condición, compro Switch";
+    }
+    return consola;
+}
+
+console.log(seleccionarConsola(3));
+console.log(seleccionarConsola(4));
+
+function seleccionarConsolaSwitch (valor){
+    var consola;
+    switch (valor) {
+        case 1:
+            consola = "Valor es 1, compro Ps5";
+            break; //Break hace que no continue mirando casos, y salta al return
+        case 2:
+            consola = "Valor es 2, compro Series X";
+            break; //Break hace que no continue mirando casos, y salta al return
+        case 3:
+            consola = "Valor es 3, compro Series S";
+            break; //Break hace que no continue mirando casos, y salta al return
+        default: 
+            consola = "No se cumple ninguna condición, compro Switch";
+            break; //Break (opcional por si hay más casos debajo) hace que no continue mirando casos, y salta al return
+    }
+    return consola;
+}
+
+console.log(seleccionarConsolaSwitch(1));
+console.log(seleccionarConsolaSwitch(4));
+// #endregion
+
+//-------------------------------------------------------------------
+/*10-RETORNAR FORMA CONCISA VALORES BOOLEANOS*/ 
+//------------------------------------------------------------------
+console.log('\n10-RETORNAR VALORES BOOLEANOS');
+
+// #region
+
+//Forma simple de retornar valores booleanos
+function esMenorQue (a,b) {
+    if (a < b) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+console.log("1 es < que 2: " + esMenorQue (1,2));
+
+//Forma MUCHO MÁS CONCISA de retornar valores booleanos
+
+function esMenorQueConciso (a,b) {
+    return a < b;
+}
+
+console.log("3 es < que 5: " + esMenorQueConciso (1,2));
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*11-PATRÓN DE RETORNO ANTICIPADO*/ 
+//------------------------------------------------------------------
+console.log('\n11-PATRÓN DE RETORNO ANTICIPADO');
+
+// #region
+
+// Return finaliza la ejecución de la F(X) aunque haya más código debajo del return
+function retornoAnticipado () {
+    console.log("Hola");
+    return "RETURN finaliza aquí la F(x), no se ejecutará lo siguiente debajo de él en la F(x)";
+    // Se muestra código innacesible porque RETURN impide acceder a él
+    console.log("Este código no se ejecuta porque RETURN finaliza la F(x)")
+}
+
+console.log(retornoAnticipado()); 
+ 
+//Retornanos undefined para controlar cuando una F(X) no puede dar un resultado
+function raizCuadrada (num) {
+    // Si num < 0 no se puede calcular la raíz cuadrada
+    if (num < 0) {
+        return undefined; // return (aquí finaliza la F(x)) "undefined" para indicar que la operación no se puede realizar
+    }
+    return Math.sqrt(num);
+}
+
+console.log("La raíz cuadrada de -2: " + raizCuadrada(-2));
+console.log("La raíz cuadrada de 4: " + raizCuadrada(4));
+
+//Variante sin el return undefined retornará un NaN(not a number)
+function raizCuadradaSinUndefined (num) {
+    // Si num < 0 no se puede calcular la raíz cuadrada
+    return Math.sqrt(num);
+}
+
+console.log("La raíz cuadrada de -2: " + raizCuadradaSinUndefined(-2));
+console.log("La raíz cuadrada de 4: " + raizCuadradaSinUndefined(4));
+// #endregion
+
+//-------------------------------------------------------------------
+/*12-CONTEO DE CARTAS*/ 
+//------------------------------------------------------------------
+console.log('\n12-CONTEO DE CARTAS');
+
+// #region
+
+/*
+BLAKJACK-LLEVAR REGISTRO (CONTEO) NUM RELATIVO DE
+CARTAS ALTAS Y BAJAS QUE QUEDAN EN LA BARAJA
+
+// Tener + cartas altas en la baraja => ventaja para jugador
+// Se asigna un valor a cada carta de acuerdo a la siguinte tabla
+// Si CONTEO es POSITIVO, => APOSTAR ALTO
+// SI CONTEO es 0 o NEGATIVO, => APOSTAR BAJO
+
+CAMBIO DEL CONTEO | CARTAS
+    +1              2, 3 , 4, 5, 6
+     0              7, 8 , 9
+    -1              10, J, Q, K, A
+ 
+// Hacer una F(X) para contar las cartas:
+- Toma un parámetro carta que (número o string)
+- Aumenta o reduce el valor de la VARIABLE GLOBAL CONTEO
+- Retorna una cadena caracteres con el CONTEO ACTUAL y la cadena:
+    + "Apuesta" si el conteo es positivo
+    + "Espera" si el conteo es 0 o negativo
+*/
+
+//Creación de la variable global para el conteo cartas
+var conteo = 0; //Se inicializa en 0
+
+function conteoCartas (carta) {
+    var decisionApuestaEspera;
+    switch (carta) {
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+            conteo = conteo + 1; // o simplemente conteo++
+            break;
+        case 10:
+        case "J":
+        case "Q":
+        case "K":
+        case "A":
+            conteo = conteo - 1; // o simplemente conteo--
+            break;
+    }
+
+    if (conteo > 0) {
+        decisionApuestaEspera = "APUESTA si el conteo es positivo"
+    } else {
+        decisionApuestaEspera = "ESPERA si el conteo es 0 o negativo"
+    } 
+    
+    return `El conteo actual es... ${conteo}, ${decisionApuestaEspera}`
+}
+
+console.log(conteoCartas(2)); //+1 l conteo
+console.log(conteoCartas("K")); //-1 al conteo
+console.log(conteoCartas(7)); // + 0
 
 // #endregion
 
 
 //#endregion Seccion 5
 
+//SECCIÓN 6:OBJETOS
+console.log("\n------SECCIÓN 6:OBJETOS------");
+//#region Seccion 6
+
+//-------------------------------------------------------------------
+/*1-CREAR OBJETOS: VAR OBJ = {PROP:VALOR}*/ 
+//------------------------------------------------------------------
+console.log('\n1-CREAR OBJETOS: VAR OBJ = {PROP:VALOR}');
+
+// #region
+
+//Creo objeto con "pares" de propiedades y valores, y métodos (funciones dentro de objetos)
+var miConsola = {
+    "CPU": "I9",
+    "GPU": 4090,
+    "SSD": true,
+    Marca: "Series Z",
+    100: "100",
+    obtenerInfo: function() {
+      console.log(`Marca: ${this.Marca}, CPU: ${this.CPU}, GPU: ${this.GPU}, SSD: ${this.SSD}`);
+    }
+  };
+  
+
+console.log(miConsola);
+
+// Apariencia más legible con JSON.stringify
+console.log(JSON.stringify(miConsola));
+
+//Para acceder al método del objeto tengo que llamar a la F(x)
+miConsola.obtenerInfo();
+
+
+
+// Variante con return en el método, lo que me obliga a console.log para mostrar el resultado retornado
+const coche = {
+    marca: "Toyota",
+    modelo: "Corolla",
+    año: 2022,
+    obtenerInformacion: function() {
+      return `Marca: ${this.marca}, Modelo: ${this.modelo}, Año: ${this.año}`;
+    }
+  };
+  
+  //Para acceder al método del objeto tengo que llamar a la F(x)
+  console.log(coche.obtenerInformacion());
+  
+
+// #endregion
+
+
+//-------------------------------------------------------------------
+/*2-ACCEDER A PROPIEDADES: NOTACIÓN DE PUNTO (OBJETO.PROPIEDAD)*/ 
+//------------------------------------------------------------------
+console.log('\n2-ACCEDER A PROPIEDADES: NOTACIÓN DE PUNTO (OBJETO.PROPIEDAD)');
+
+// #region
+//Creo objeto con "pares" de propiedades y valores
+var tuConsola = {
+    "CPU": "I5",
+    "GPU": 2080,
+    "SSD": true,
+    "Marca": "Series X"
+};
+
+console.log("La propiedad CPU es " + tuConsola.CPU);
+console.log(`La propiedad GPU es ${tuConsola.GPU}`);
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*3-ACCEDER A PROPIEDADES: NOTACIÓN DE CORCHETES (OBJETO["PROPIEDAD"]*/ 
+//------------------------------------------------------------------
+console.log('\n3-ACCEDER A PROPIEDADES: NOTACIÓN DE CORCHETES');
+
+// #region
+
+//Para acceder a propiedades con espacios es obligatoria
+
+var miCuaderno = {
+    "color": "verde",
+    "num de paginas": 200,
+    "num de hojas": 100,
+    25: "Es el num 25"
+}
+
+console.log("La propiedad color es " + miCuaderno["color"]);
+console.log("La propiedad color es " + miCuaderno.color);
+
+console.log("25 es " + miCuaderno[25]);
+console.log("25 es " + miCuaderno["25"]);
+
+console.log("La propiedad num de hojas es " + miCuaderno["num de hojas"]);
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*4-ACCEDER A PROPIEDADES: VARIABLES*/ 
+//------------------------------------------------------------------
+console.log('\n4-ACCEDER A PROPIEDADES: NOTACIÓN DE CORCHETES');
+
+// #region
+
+var topConsolas = {
+    1: "Ps6",
+    2: "Series S",
+    3: "Switch"
+};
+
+var posicionConsola = 3;
+
+console.log("En el Top 3 está " + topConsolas[posicionConsola]);
+console.log("En el Top 2 está " + topConsolas["2"]);
+console.log("En el Top 2 está " + topConsolas[1]);
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*5-ACTUALIZAR PROPIEDADES*/ 
+//------------------------------------------------------------------
+console.log('\n5-ACTUALIZAR PROPIEDADES: OBJ.PROP = NEW VALOR');
+
+// #region
+
+var miMochila = {
+    color: "azul",
+    tamaño: "mediano",
+    contenido: ["botella de agua", "cuaderno"]
+};
+//Objeto miMochila
+console.log(JSON.stringify(miMochila));
+//Modifico la propiedad color a verde
+console.log("Modifico el color a " + (miMochila.color = "verde"));
+//Modificado objeto miMochila
+console.log("Objeto modificado: " + JSON.stringify(miMochila));
+
+//Agrego un elemento "lapiz" a contenido
+miMochila.contenido.push("lápiz");
+//Vemos como queda el contenido
+console.log("Agrego lapiz al contenido: " + miMochila.contenido);
+//Modificado objeto miMochila
+console.log("Objeto modificado: " + JSON.stringify(miMochila));
+
+// Cambio el contenido por un array nuevi
+miMochila.contenido = ["Nuevo Array vacío"]; // [] sería array vacío
+console.log("Contenido asignado a nuevo array vacío: " + miMochila.contenido);
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*6-AGREGAR PROPIEDADES: OBJ.PROPIEDAD = VALOR*/ 
+//------------------------------------------------------------------
+console.log('\n6-AGREGAR PROPIEDADES: OBJ.PROPIEDAD = VALOR');
+
+// #region
+
+var curso = {
+    nombre: "JS"
+};
+
+console.log(curso); //Si quiero concatenar texto + objeto, necesito el método  JSON.stringify
+console.log("Curso: " + (curso)); //Me saldrá Curso: [object Object]
+console.log("El objeto curso básico: " + JSON.stringify(curso));
+
+//Agrego nuevas propiedades
+curso.idioma = "Español";
+curso.duracion = "300 horas";
+curso.certificado = true;
+curso["precio"] = "1000 euros";
+curso["online"] = true;
+curso["profesor"] = "Mr. Orange";
+
+console.log(curso);
+console.log("El objeto curso modificado: " + JSON.stringify(curso));
+console.log("La duración del curso: " + curso.duracion);
+console.log("El precio del curso: " + curso["precio"]);
+console.log("El profesor curso: " + curso["profesor"]);
+
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*7-ELIMINAR PROPIEDADES: DELETE OBJ.PROPIEDAD*/ 
+//------------------------------------------------------------------
+console.log('\n7-ELIMINAR PROPIEDADES: DELETE OBJ.PROPIEDAD');
+
+// #region
+
+var curso2 = {
+    nombre: "JS",
+    idioma: "Español",
+    duracion: "300 horas",
+    certificado: true
+};
+
+console.log(curso); //Si quiero concatenar texto + objeto, necesito el método  JSON.stringify
+console.log("Curso: " + (curso)); //Me saldrá Curso: [object Object]
+console.log("El objeto curso básico: " + JSON.stringify(curso2));
+
+//Borro la propiedad certificado, duracion, idioma
+delete curso2.certificado;
+delete curso2.duracion;
+delete curso2.idioma;
+
+//Muestro el curso modificado con la eliminación
+console.log("El objeto curso modificado: " + JSON.stringify(curso2));
+
+// #endregion
+
+// #region
+
+//-------------------------------------------------------------------
+/*8-OBJETOS PARA BÚSQUEDAS: USAR OBJETO PARA REEMPLAZAR SENTENCIAS SWITCH*/ 
+//------------------------------------------------------------------
+console.log('\n8-OBJETOS PARA BÚSQUEDAS');
+
+// #region
+
+//F(X) Estructura Switch
+function buscarElementoQuimico (simbolo) {
+    var elementoQuimico = ""; // Lo inicio como un caracter vacío
+    switch (simbolo) {
+        case "Al":
+            elementoQuimico = "Aluminio";
+            break;
+        case "Cl":
+            elementoQuimico = "Cloro";
+            break; 
+    }
+    return elementoQuimico;
+}
+
+console.log('Busqueda "Al" por switch: ' + buscarElementoQuimico("Al"));
+
+
+//F(X) con Objeto que simula la estructura Switch
+function buscarElementoQuimicoConObj (simbolo) {
+    var simbolosQuimicos = {
+        "Al": "Aluminio",
+        "Cl": "Cloro"
+    }
+    
+    return simbolosQuimicos[simbolo]; //simbolo sería la propiedad ("Al","Cl") que introducimos como argumento
+}
+
+console.log('Busqueda "Al" por objeto: ' + buscarElementoQuimicoConObj("Al"));
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*9-VERIFICAR PROPIEDADES: OBJ.HASOWNPROPERTY("PROP")*/ 
+//------------------------------------------------------------------
+console.log('\n9-VERIFICAR PROPIEDADES');
+
+// #region
+
+var miBalon = {
+    color: "rojo",
+    "precio": "5 euros"
+}
+
+console.log(miBalon);
+console.log(JSON.stringify(miBalon));
+
+console.log('Existe la propiedad "color": '+ miBalon.hasOwnProperty("color")); //Se mostrará True
+console.log('Existe la propiedad "precio": '+ miBalon.hasOwnProperty("precio")); //Se mostrará True
+console.log('Existe la propiedad "peso": '+ miBalon.hasOwnProperty("peso")); //Se mostrará True
+
+//F(X) que verifica si existe una propiedad en un objeto
+
+function verificaPropiedad (objeto, propiedad) {
+    if (objeto.hasOwnProperty(propiedad)) {
+        return "Propiedad: " +  objeto[propiedad];
+    } else {
+        return "El objeto no tiene esta propiedad"
+    }
+}
+
+//Consulto si tiene la propiedad "Precio"
+console.log(verificaPropiedad(miBalon, "precio"));
+//Consulo una propiedad que no tiene
+console.log(verificaPropiedad(miBalon, "peso"));
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*10-OBJETOS COMPLEJOS*/ 
+//------------------------------------------------------------------
+console.log('\n10-OBJETOS COMPLEJOS:ARRAY DE OBJETOS, VAR ARRAY = [ {},{}]');
+
+// #region
+
+// Array con 2 objetos
+var ordenesDePizzas = [
+    {//1º objeto en POSICIÓN (índice) 0 
+        "tipo": "margarita",
+        "precio": 5.99,
+        "toppings": [ //Esta propiedad es un array
+            "extraqueso",
+            "champiñones"
+        ],
+        "para llevar": true
+    },
+    {// 2º objeto en POSICIÓN (índice) 1
+        "tipo": "barbacoa",
+        "precio": 15.99,
+        "toppings": [ //Esta propiedad es un array
+            "extraqueso",
+            "4 quesos",
+            "pizza"
+        ],
+        "para llevar": false
+    }
+];
+
+console.log(ordenesDePizzas);
+console.log(JSON.stringify(ordenesDePizzas));
+
+//Muestro los elementos de la posición(índice) 0 y 1 del Array
+console.log(ordenesDePizzas[0]);
+console.log(JSON.stringify(ordenesDePizzas[0]));
+
+console.log(ordenesDePizzas[1]);
+console.log(JSON.stringify(ordenesDePizzas[1]));
+
+//Muestro propiedad "tipo" del elemento posición(índice) 0
+console.log(ordenesDePizzas[0].tipo); //Notación punto
+console.log(JSON.stringify(ordenesDePizzas[0]["tipo"])); //Notación corchete
+
+//Muestro propiedad "toppings" del elemento posición(índice) 0
+console.log(ordenesDePizzas[0].toppings); //Notación punto
+console.log(JSON.stringify(ordenesDePizzas[0]["toppings"])); //Notación corchete
+
+
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*11-OBJETOS ANIDADOS: VAR OBJ = { {} }*/ 
+//------------------------------------------------------------------
+console.log('\n11-OBJETOS ANIDADOS');
+
+// #region
+
+//Objeto con 3 propiedades
+    //"Propiedades" tiene 1 objeto con 2 objetos dentro (Asentamientos y Pisos)
+var miStarfield = {
+    "clase": "Corpo",
+    "Sexo": "Masculino",
+    "Propiedades": {
+        "Asentamientos": {
+            "nº asentamientos": 10,
+            "valor asentamientos": 1000
+        },
+        "Pisos": {
+            "nº pisos": 20,
+            "valor pisos": 25000
+        }
+    }
+};
+
+//Muestro objeto miStarfield
+console.log(miStarfield);
+console.log(JSON.stringify(miStarfield));
+
+//Muestro propiedad clase
+console.log(miStarfield.clase);
+console.log(JSON.stringify(miStarfield.clase));
+console.log(JSON.stringify(miStarfield["clase"]));
+
+//Muestro propiedad Sexo
+console.log(miStarfield.Sexo);
+console.log(JSON.stringify(miStarfield.Sexo));
+console.log(JSON.stringify(miStarfield["Sexo"]));
+
+//Muestro propiedad Propiedades
+console.log(miStarfield.Propiedades);
+console.log(JSON.stringify(miStarfield.Propiedades));
+console.log(JSON.stringify(miStarfield["Propiedades"]));
+
+//Muestro elemento Asentamientos de Propiedades
+console.log(miStarfield.Propiedades.Asentamientos);
+console.log(JSON.stringify(miStarfield.Propiedades.Asentamientos));
+console.log(JSON.stringify(miStarfield.Propiedades["Asentamientos"]));
+
+//Muestro elemento nº asentamientos del objeto Asentamientos del  Propiedades
+console.log("El nº de asentamientos: " + miStarfield.Propiedades.Asentamientos["nº asentamientos"]);
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*12-ARRAYS ANIDADOS: VAR OBJ = [ {[]} ]*/ 
+//------------------------------------------------------------------
+console.log('\n12-ARRAYS ANIDADOS: VAR OBJ = [ {[]} ]');
+
+// #region
+
+var misPlantas = [
+    {//1º objeto en posición 0
+        tipo: "flores", //si no pones comillas a tipo, JS lo hace luego al ser una sola palabra
+        lista: [
+            "rosas",
+            "tulipanes",
+            "dientes de leon"
+        ]
+    },
+    {//2º objeto en posición 1
+        tipo: "árboles", //si no pones comillas a tipo, JS lo hace luego al ser una sola palabra
+        lista: [
+            "abedul",
+            "roble",
+            "pino"
+        ]
+    }
+];
+
+console.log(misPlantas);
+console.log(JSON.stringify(misPlantas));
+
+//Acceder al elemento "rosas" (posición 0) de lista del 1º objeto (posición 0)
+console.log(misPlantas[0].lista[0]); //Notación de punto
+console.log(misPlantas[0]["lista"][0]); //Notación de corchete
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*13-APP: COLECCIÓN DE DISCOS*/ 
+//------------------------------------------------------------------
+console.log('\n13-APP: COLECCIÓN DE DISCOS');
+
+
+//#endregion Seccion 6
