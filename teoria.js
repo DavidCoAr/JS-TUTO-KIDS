@@ -2308,11 +2308,79 @@ console.log("\n------SECCIÓN 8:NÚMEROS ALEATORIOS------");
 //-------------------------------------------------------------------
 /*1-NUMEROS ALEATORIOS*/ 
 //------------------------------------------------------------------
-console.log('\n1-NUMEROS ALEATORIOS');
+console.log('\n1-NUMEROS ALEATORIOS: MATH.RANDOM()');
 
 // #region 
 
+//Math.random() genera un num entre 0 y 1 NO INCLUIDO (0.9999999...)
+
+//Dentro de una F(x)
+function generaFraccionAleatorio () {
+    return Math.random();
+};
+
+console.log("Num fraccional aleatoerio entre 0 y casi 1: " + generaFraccionAleatorio ());
+console.log(generaFraccionAleatorio ());
+
+//Fuera de una F(x)
+console.log(Math.random());
+
+var numAleatorio = Math.random();
+console.log (numAleatorio)
+
 // #endregion 
+
+//-------------------------------------------------------------------
+/*2-NUMEROS ALEATORIOS ENTEROS: MATH.FLOOR( MATH.RANDOM() * num entero)*/ 
+//------------------------------------------------------------------
+console.log('\n2-NUMEROS ALEATORIOS ENTEROS: MATH.FLOOR( MATH.RANDOM() * num entero)');
+
+// #region 
+
+//Math.floor redondea por abajo a ENTEROS el producto de 0 * 20, 0.001 * 20... 0.999 * 20 (=> 19)
+var numAleatorioEntre0y19 = Math.floor(Math.random() * 20);
+
+console.log ("Num Entero aleatorio entre 0-19: " + numAleatorioEntre0y19);
+
+// F(X) que genera un num entero aleatorio a partir de un limite supeior
+function generarNumEnteroAleatorio (limiteSuperior) {
+    return Math.floor(Math.random () * limiteSuperior )
+};
+
+console.log("Num Entero aleatorio entre 0 y Lim Superior 3: " + generarNumEnteroAleatorio(3));
+console.log("Num Entero aleatorio entre 0 y Lim Superior 40: " + generarNumEnteroAleatorio(40));
+console.log("Num Entero aleatorio entre 0 y Lim Superior 10: " + generarNumEnteroAleatorio(10));
+console.log("Num Entero aleatorio entre 0 y Lim Superior 100: " + generarNumEnteroAleatorio(100));
+
+//Bucle de 4 iteraciones generando Num Entero aleatorio entre 0 y Lim Superior 10
+for (var i = 0; i < 4;i++) {
+    console.log("Iteración: " + i);
+    console.log("Num Entero aleatorio entre 0 y Lim Superior 10: " + generarNumEnteroAleatorio(10));
+}
+// #endregion 
+
+//-------------------------------------------------------------------
+/*3-NUMEROS ALEATORIOS ENTEROS EN UN RANGO: MATH.FLOOR( MATH.RANDOM() * (limiteSuperior - limiteInferior + 1) + limiteInferior */ 
+//------------------------------------------------------------------
+console.log('\n3-NUMEROS ALEATORIOS ENTEROS EN UN RANGO: MATH.FLOOR( MATH.RANDOM() * (limiteSuperior - limiteInferior + 1) + limiteInferior');
+
+// #region
+
+// F(X) que genera un num entero aleatorio a partir de un limite supeior y límite inferior
+function generarNumEnteroRango (limiteInferior,limiteSuperior) {
+    return Math.floor(Math.random () * (limiteSuperior - limiteInferior + 1) + limiteInferior );
+};
+
+console.log("Num entero aleatoerio entre Lim Inferior 2 y Lim Superior 20" + generarNumEnteroRango(2,20));
+
+//Generar 5 iteraciones de num entero aleatoerio entre 2 y 20
+for (var i = 0; i < 5;i++) {
+    console.log("Iteración: " + i);
+    console.log("Num entero aleatoerio entre Lim Inferior 2 y Lim Superior 20" + generarNumEnteroRango(2,20));
+}
+// #endregion
 
 // #endregion Seccion 8
 
+// #region
+// #endregion
