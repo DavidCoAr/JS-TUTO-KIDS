@@ -2382,5 +2382,68 @@ for (var i = 0; i < 5;i++) {
 
 // #endregion Seccion 8
 
+
+//SECCIÓN 9:CONVERTIR A ENTEROS: PARSEINT()
+console.log("\n------SECCIÓN 9:CONVERTIR A ENTEROS: PARSEINT()------");
+// #region Seccion 9
+
+//-------------------------------------------------------------------
+/*1-F(X) PARSEINT()*/ 
+//------------------------------------------------------------------
+console.log('\n1-F(X) PARSEINT()');
+
 // #region
+
+// Este string "5" representa el numero 5 => NO VALE para operaciones matemáticas
+console.log("5");
+console.log('"5" + "5" = ' + "5" + "5");
+// 5 es el número entero 5 => VALE para operaciones matemáticas
+console.log(5);
+console.log(5 + 5);
+
+// Convertirmos el string 150 a entero
+console.log(parseInt("150") + parseInt("150")); // Muestra 300
+
+// Convertirmos el string 5.5 a entero => se queda solo con la parte entera
+console.log(parseInt("5.5")); // Muestra 5
+
+// Convertirmos el decimal  5.5 a entero => se queda solo con la parte entera
+console.log(parseInt(5.5)); // Muestra 5
+
 // #endregion
+
+//-------------------------------------------------------------------
+/*2- F(X) PARSEINT EN UNA BASE()*/ 
+//------------------------------------------------------------------
+console.log('\n2-F(X) PARSEINT EN UNA BASE:BINARIO, HEXADECIMAL');
+
+// #region
+
+//Convertir el string  "110111" que representa un binario a entero => 55
+console.log(parseInt("110111", 2)); //el 2 es para indicar que es base binaria (0 y 1)
+
+//Convertir el binario  110111 a entero => 55
+console.log(parseInt(110111, 2)); //el 2 es para indicar que es base binaria (0 y 1)
+
+//Convertir el string  "3E0A" que representa un hexadecimal a entero => 15882
+console.log(parseInt("3E0A", 16)); //el 16 es para indicar que es base hexadecimal 
+
+
+// #endregion
+
+
+// #endregion Seccion 9
+
+
+//SECCIÓN 10:OPERADOR CONDICIONAL(TERNARIO)
+console.log("\n------SECCIÓN 10:OPERADOR CONDICIONAL(TERNARIO)------");
+// #region Seccion 10
+
+//-------------------------------------------------------------------
+/*1-OPERADOR CONDICIONAL(TERNARIO)*/ 
+//------------------------------------------------------------------
+console.log('\n1-OPERADOR CONDICIONAL(TERNARIO)');
+
+
+
+// #endregion Seccion 10
