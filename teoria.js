@@ -315,6 +315,7 @@ console.log(miFraseConcatenadaConAcentoInvertido);
 
 //#endregion Seccion 1
 
+
 //SECCIÓN 2:ARRAY
 console.log("\n------SECCIÓN 2:ARRAY------");
 //#region Seccion 2
@@ -503,9 +504,10 @@ console.log(`Voy a comprar ${miListadoCompras[1][1]} unidades de ${miListadoComp
 
 //#endregion Seccion 2
 
+
 //SECCIÓN 3:FUNCIONES
 console.log("\n------SECCIÓN 3:FUNCIONES------");
-//#region Seccion 3
+//#region SOBJETOSeccion 3
 
 //------------------------------------------------------------------
 /*1-FUNCIONES*/ 
@@ -764,6 +766,7 @@ console.log(false);
 // #endregion
 
 //#endregion Seccion 3
+
 
 //SECCIÓN 4:OPERADORES
 console.log("\n------SECCIÓN 4:OPERADORES------");
@@ -1604,6 +1607,7 @@ console.log(conteoCartas(7)); // + 0
 
 //#endregion Seccion 5
 
+
 //SECCIÓN 6:OBJETOS
 console.log("\n------SECCIÓN 6:OBJETOS------");
 //#region Seccion 6
@@ -1681,7 +1685,8 @@ console.log('\n3-ACCEDER A PROPIEDADES: NOTACIÓN DE CORCHETES');
 
 // #region
 
-//Para acceder a propiedades con espacios es obligatoria
+//Para acceder a propiedades CON ESPACIOS es obligatoria
+//Para acceder a propiedades VÍA VARIABLES es obligatoria ARRAY[I][PROPIEDAD COMO VARIABLE]
 
 var miCuaderno = {
     "color": "verde",
@@ -1812,8 +1817,6 @@ delete curso2.idioma;
 console.log("El objeto curso modificado: " + JSON.stringify(curso2));
 
 // #endregion
-
-// #region
 
 //-------------------------------------------------------------------
 /*8-OBJETOS PARA BÚSQUEDAS: USAR OBJETO PARA REEMPLAZAR SENTENCIAS SWITCH*/ 
@@ -2034,5 +2037,282 @@ console.log(misPlantas[0]["lista"][0]); //Notación de corchete
 //------------------------------------------------------------------
 console.log('\n13-APP: COLECCIÓN DE DISCOS');
 
+// #region 
+
+// #endregion 
 
 //#endregion Seccion 6
+
+
+//SECCIÓN 7:CICLOS
+console.log("\n------SECCIÓN 7:CICLOS------");
+// #region Seccion 7
+
+//-------------------------------------------------------------------
+/*1-CICLO WHILE:NO SABEMOS Nº ESPECÍFICO ITERACIONES*/ 
+//------------------------------------------------------------------
+console.log('\n1-CICLO WHILE:NO SABEMOS Nº ESPECÍFICO ITERACIONES');
+
+// #region 
+
+var iteracion = 0;
+
+// Mientras condición (iteracion <= 3) sea TRUE se repite el código
+while (iteracion <= 3) {
+    console.log("Esto es una iteracion (parte de 0) que se ejecuta (4 VECES) mientras iteracion <= 3");
+    iteracion++; //En cada ciclo iteracion aumenta en +1
+};
+
+//Agregar numeros entre 0-9 al Array vacío
+var miArrayVacio = [];
+var i = 0;
+
+console.log("Array vacío: " + miArrayVacio);
+
+// Mientras condición (i < 10) sea TRUE se repite el código
+while (i < 10) { // Si fuera i <= 10, llegaría hasta 10 al hacer otra iteracion
+    miArrayVacio.push(i); //agrego i en cada iteración del bucle
+    i++; //En cada ciclo i aumenta en +1
+};
+
+console.log("Array con num entre 0-9: " + miArrayVacio);
+
+//Eliminar elementos de un array mientras longitud del array > 4
+var arrayWhile = [1,2,3,4,5,6,7,8,9,];
+
+// Mientras condición (arrayWhile.length > 4) sea TRUE se repite el código
+while (arrayWhile.length > 4) {
+    arrayWhile.pop();
+};
+
+console.log(arrayWhile);
+
+
+// #endregion 
+
+//-------------------------------------------------------------------
+/*2-CICLO FOR: SABEMOS Nº ESPECÍFICO ITERACIONES*/ 
+//------------------------------------------------------------------
+console.log('\n2-CICLO FOR: SABEMOS Nº ESPECÍFICO ITERACIONES');
+
+// #region 
+
+//Agregar numeros entre 0-9 al Array vacío
+var miArrayFor = [];
+
+console.log(miArrayFor);
+
+//for (inicializo i; condición true; incremento i)
+for (var i = 0; i < 10;i++) { // i = i+2 IDEM i+= 2
+    miArrayFor.push(i); //En cada iteración agrego i (parte de 0) al array
+};
+
+console.log(miArrayFor);
+
+//Agregar nº impares entre 1 y 19 al un array vacío
+var miArrayFor2 = [];
+
+console.log(miArrayFor2);
+
+for (var i = 1; i <= 19; i+= 2 ) { // Valdría i < 20, i = i + 2
+    miArrayFor2.push(i);
+};
+
+console.log(miArrayFor2);
+
+// #endregion 
+
+
+//-------------------------------------------------------------------
+/*3-CICLO FOR: CONTAR HACIA ATRÁS*/ 
+//------------------------------------------------------------------
+console.log('\n3-CICLO FOR: CONTAR HACIA ATRÁS');
+
+// #region 
+
+//Contar hacia atrás desde 15 a 10 y mostrarlo por consola
+for (var i = 15; i >= 10; i--) {
+    console.log("Cuenta hacia atrás de 15 a 10: " + i);
+};
+
+//Agregar num pares desde 10 a 0 (no inclusive)
+var miArrayFor3 = [];
+
+console.log(miArrayFor3);
+
+for (i = 10; i > 0; i -= 2) { // i = i - 2, i >= 0 si queremos que entre el 0
+    miArrayFor3.push (i)
+};
+
+console.log(miArrayFor3);
+
+// #endregion 
+
+//-------------------------------------------------------------------
+/*4-CICLO FOR: ITERAR SOBRE UN ARRAY (OBTENER CADA ELEMENTO DEL ARRAY)*/ 
+//------------------------------------------------------------------
+console.log('\n4-CICLO FOR: ITERAR SOBRE UN ARRAY (OBTENER CADA ELEMENTO DEL ARRAY)');
+
+// #region 
+
+//Sumar los valores de los elementos de un array (1+10+100+1000)
+var miArrayFor4 = [1, 10, 100, 1000]
+var totalSumaElementos = 0;
+
+// i coincide con el índice 0 del array
+for (var i = 0; i < miArrayFor4.length; i++) { //la longitud del array es 4
+    console.log("iteracion " + i);
+    console.log("Sumo " + miArrayFor4[i]);
+
+    totalSumaElementos += miArrayFor4[i]; // totalSumaElementos = totalSumaElementos + miArrayFor4[i]
+}
+
+console.log (totalSumaElementos);
+
+
+// Convertir a mayúsculas todas las cadenas de caracteres del array
+var lenguajeProgramacion = ["Javascript", "Python", "Java", "C++"];
+
+// i coincide con el índice del Array, 0 sería Javascript, 1 sería Python
+for (var i = 0; i < lenguajeProgramacion.length;i++ ) {
+    console.log(lenguajeProgramacion[i].toUpperCase()) //toUpperCase() pasa a mayúscula
+};
+
+
+//F(X) que cuenta el total de numeros pares que encuentra en un Array
+function contarNumPares (array) {
+    var totalNumPares = 0;
+    
+    for (var i = 0; i< array.length; i++) {
+        if (array[i] % 2 == 0) {
+            totalNumPares++
+        }
+    }
+    return totalNumPares
+};
+
+console.log("El nº de pares del array [0,1,2,3,4,5,6]: " + contarNumPares([0,1,2,3,4,5,6])); //Tiene 4 pares (0,2,4,6)
+
+// #endregion 
+
+//-------------------------------------------------------------------
+/*5-CICLO FOR ANIDADOS:FOR DENTRO DE UN FOR*/ 
+//------------------------------------------------------------------
+console.log('\n5-CICLO FOR ANIDADOS:FOR DENTRO DE UN FOR');
+
+// #region 
+
+var miArrayMultidemensional = [[1,2,3], [4,5,6], [7,8,9]];
+
+// Si queremos trabajar con los array anidados me vale 1 for
+for (i = 0; i < miArrayMultidemensional.length; i++ ) {
+    console.log("Array en el índice " + i);
+    console.log(miArrayMultidemensional[i]);
+    
+};
+
+// Si queremos trabajar con los elementos de los array anidados necesitamos un For anidado
+for (i = 0; i < miArrayMultidemensional.length; i++ ) { //Ciclo Externo para arrays anidados
+    // Cogemos el array anidado y lo pasamos a una variable con la que trabajar
+    var arrayAnidado = miArrayMultidemensional[i]; // Array anidado
+    console.log(">>> Array anidado en el índice " + i + ": " + arrayAnidado);
+    // Ya estamos en el array anidado
+    for (j = 0; j < arrayAnidado.length; j++ ) { //Ciclo Interno para elementos de los arrays anidados=> otra letra para iteración (j)
+        console.log("Elemento en el subíndice " + j + " del Array anidado");
+        console.log(arrayAnidado[j]); // Elemento del Array anidado   
+    };
+};
+
+// #endregion 
+
+//-------------------------------------------------------------------
+/*6-CICLO DO ... WHILE*/ 
+//------------------------------------------------------------------
+console.log('\n6-CICLO DO ... WHILE:SE EJECUTA MIN 1 VEZ');
+
+// #region 
+
+// Comparativa con el While
+var numWhile;
+numWhile = 5;
+
+while (numWhile < 10) {
+    console.log(numWhile);
+    numWhile++;
+};
+
+// Do While se ejecuta al menos una vez
+var numDo;
+numDo = 10;
+
+do {
+    console.log("Do se ejecuta min 1 vez: " + numDo);
+    numDo++;
+} while (numDo < 10); 
+
+// #endregion 
+
+//-------------------------------------------------------------------
+/*7-APP: BÚSQUEDA DE PERFIL*/ 
+//------------------------------------------------------------------
+console.log('\n7-APP: BÚSQUEDA DE PERFIL');
+
+// #region 
+
+// Hacer F(x) que permita buscar UNA PROPIEDAD (tras introdirla) en la lista de contactos a partir del NOMBRE introducido
+var contactos = [
+    { // 1º objeto, ÍNDICE 0
+        "nombre": "Nora",
+        "apellido": "Nav",
+        "numero": "01",
+        "gustos": ["pizza", "Programación"]
+    },
+    { // 2º objeto, ÍNDICE 1
+        "nombre": "Harry",
+        "apellido": "Potter",
+        "numero": "02",
+        "gustos": ["Conspiraciones", "Tv-Shows"]
+    }
+];
+
+console.log(JSON.stringify(contactos));
+
+//Necesitamos un FOR para ir elemento a elemento del array
+function buscarPefil (nombre,propiedad) {
+    // i coincide con el índice del array contactos, si es 0 comienza en el 1º objeto
+    for (var i = 0; i < contactos.length; i++) {
+        //Si propiedad nombre === nombre introducido como argumento, retorna la propiedad introducida como argumento
+        if (contactos[i].nombre === nombre ){// También valecontactos[i]["nombre"]
+            // || "TEXT" es CÓDIGO DE RESPALDO  para mostrar si NO EXISTE la propiedad, lo que da UNDEFINED YFALSE EN CONTEXTOS BOOLEANOS
+            // Con || se retorna la 1º expresión que sea TRUE
+            return contactos[i][propiedad] || "La propiedad buscada no existe";// Propiedad es una variable, MUST NOTACIÓN CORCHETE
+        } //FALLO SI aquí RETURN sms de no está el contacto: se mostraría en la 1º iteración si no coincide aunque existiera el nombre en las siguientes iteraciones
+    //Si tras toda la iteración no se encuentra el nombre, retornamos un sms
+    return "El contacto no está en la lista" // Se pone aquí el Return sms, tras asegurarse hacer todos los ci
+    }
+};
+
+console.log("Buscamos por Nora y Gustos: " + buscarPefil("Nora","gustos"));
+
+console.log("Buscamos por Nora y Propiedad que no existe: " + buscarPefil("Nora","pisos"));
+console.log("Buscamos por Nombre que no existe y Gustos: " + buscarPefil("Ramon","gustos"));
+// #endregion 
+
+// #endregion Seccion 7
+
+
+//SECCIÓN 8:NÚMEROS ALEATORIOS
+console.log("\n------SECCIÓN 8:NÚMEROS ALEATORIOS------");
+// #region Seccion 8
+
+//-------------------------------------------------------------------
+/*1-NUMEROS ALEATORIOS*/ 
+//------------------------------------------------------------------
+console.log('\n1-NUMEROS ALEATORIOS');
+
+// #region 
+
+// #endregion 
+
+// #endregion Seccion 8
+
