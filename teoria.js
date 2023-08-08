@@ -2444,6 +2444,74 @@ console.log("\n------SECCIÓN 10:OPERADOR CONDICIONAL(TERNARIO)------");
 //------------------------------------------------------------------
 console.log('\n1-OPERADOR CONDICIONAL(TERNARIO)');
 
+// #region 
 
+//F(x) retorne el < de 2 valores (X,Y)
+
+function retornarMinimo (x,y) {
+    if (x < y) { // Pasaremos este if else a un ternario
+        return x;
+    } else {
+        return y
+    }
+}
+
+console.log("El valor más pequeño entre 1 y 2: " + retornarMinimo (1,2));
+
+//Variante con Ternario
+function retornarMinimoTernario (x,y) {
+    //return (condición) 
+        // ?(si es true) return x 
+        // :(si es false) return y 
+    return x < y ? x : y;
+}
+
+console.log("El valor más pequeño entre 1 y 2: " + retornarMinimoTernario (1,2));
+
+function retornarMinimoTernario2 (x,y) {
+    //console.log (condición) 
+        // ?(si es true) se muestra x por consola  
+        // :(si es false) se muestra y por consola   
+    console.log("El valor + prqueño entre 1 y 2: " + (x < y ? x : y));
+}
+retornarMinimoTernario2 (1,2);
+
+// Si aT > bT (condición) es true  => aT + 2. Si es false => bt x 3
+var aT = 5;
+var bT = 9;
+
+console.log("Si 5 > 9 es false, 9 x 3: " + (aT > bT ? aT + 2 : bT * 3));
+
+// #endregion 
+
+//-------------------------------------------------------------------
+/*2-MÚLTIPLES OPERADORES CONDICIONALES (TERNARIOS)*/ 
+//------------------------------------------------------------------
+console.log('\n2-MÚLTIPLES OPERADORES CONDICIONALES (TERNARIOS)');
+
+// #region 
+
+function compararNumeros (a,b){
+    if (a == b) { //Vamos a pasar este if else anidado a múltiples ternarios 
+        return "a es = que b";
+    } else if (a > b) {
+        return "a es > que b";
+    } else {
+        return "a es < que b";
+    }
+}
+
+console.log("Comparando a (1) y b (2): " + compararNumeros(1,2));
+
+// Variante con ternarios
+function compararNumeros2 (a,b) {
+   return a == b ? "a es = que b" //Evalua a == b, si es TRUE (?) se retorna "a es = que b"
+        : a > b ? "a es > que b" // Si es falsa a == b, se evalua a > b y si es true (?) se retorna "a es > que b"
+        : "a es < que b"; // Si es falsa a > b se retorna "a es < que b"
+}
+
+console.log("Comparando a (4) y b (2) con múltiples ternarios: " + compararNumeros2(4,2));
+
+// #endregion 
 
 // #endregion Seccion 10
