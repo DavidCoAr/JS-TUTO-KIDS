@@ -2720,3 +2720,198 @@ console.log("Object.freeze no me deja modificar el objeto: " + JSON.stringify(co
 // #endregion
 
 // #endregion Seccion 11
+
+
+
+//SECCIÓN 12:F(X) FLECHA
+console.log("\n------SECCIÓN 11:VARIABLES-LET-CONST------");
+// #region Seccion 12
+
+//-------------------------------------------------------------------
+/*1-F(x) FLECHA (ARROW)*/ 
+//------------------------------------------------------------------
+console.log('\n1-F(x) FLECHA (ARROW)');
+
+// #region
+
+//F(X) Anónima
+
+const fecha = function() {
+    return new Date (); //new crea una nueva instancia del objeto de la clase Date
+};
+
+console.log("Imprimo la f(x) si no pongo (): " + fecha); //Imprime la F(X), no la llama
+console.log("fecha(): " + fecha ()); //A F(X) anónima la llamas poniendo fecha ()
+
+const tiempoActual = fecha (); //Otra opción es asignar F(X) a una variable
+console.log(tiempoActual);
+
+//Equivalente con F(X) FLECHA(ARROW)
+const fecha2 = () =>  new Date (); //new crea una nueva instancia del objeto de la clase Date
+
+console.log("Imprimo la f(x) si no pongo (): " + fecha2); //Imprime la F(X), no la llama
+
+const tiempoActual2 = fecha2 (); //Otra opción es asignar F(X) a una variable
+console.log(tiempoActual2);
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*2-F(x) FLECHA (ARROW) CON VARIOS PARÁMETROS*/ 
+//------------------------------------------------------------------
+console.log('\n2-F(x) FLECHA (ARROW) CON VARIOS PARÁMETROS');
+
+// #region
+
+//F(X) que concatena arrays con con concat()
+
+const concatenarArray = function (array1,array2) {
+    return array1.concat(array2);
+}
+
+console.log(concatenarArray ([1,2,"array 1"], ["array 2",2,3])); //muestra [1,2,"array 1","array 2",2,3]
+console.log(JSON.stringify(concatenarArray ([1,2,"array 1"], ["array 2",2,3])));
+
+//Variante con F(X) Flecha (arrow)
+
+const concatenarArrayArrow = (array1,array2) => array1.concat(array2);
+
+console.log(concatenarArrayArrow ([1,2,"array 1"], ["array 2",2,3]));
+
+
+
+// F(X) con 2 parámetros
+function sum(a,b) {
+    return a + b;
+}
+
+console.log(sum(2,3));
+
+//Equivalente con F(X) FLECHA(ARROW)
+const sum2 = (a,b) => a + b;
+
+console.log(sum(2,3));
+
+
+
+//NECESARIO RETURN Y LLAVES {} si la F(X) arrow tiene múltiples expresiones
+// Función regular
+function calcular(a, b) {
+    let resultado = a + b;
+    return resultado;
+}
+
+console.log(calcular(1,2));
+
+// Arrow function equivalente
+const calcularArrow = (a, b) => { //must {} por contener múltiples expresiones
+    let resultado = a + b;
+    return resultado;
+};
+console.log(calcularArrow(1,2));
+
+
+
+// F(X) arrow puede quitar EL () SI SOLO TIENE 1 PARÁMETRO
+// Arrow function sin parámetros
+const funcionSinParametros = () => console.log("Hola");
+console.log(funcionSinParametros());//Muestra undefined porque, al NO TENER UN RETURN, eso es lo que la función funcionSinParametros devuelve implícitamente.
+funcionSinParametros();
+
+// Arrow function con un parámetro => PUEDO QUITAR EL ()
+const funcionConParametro = x => x * 2;
+console.log(funcionConParametro(100));
+
+const funcionConParametro2 = (x) => x * 2;
+console.log(funcionConParametro2(1500));
+
+// Arrow function con múltiples parámetros
+const funcionConMultiplesParametros = (a, b) => a + b;
+console.log(funcionConMultiplesParametros(2,30));
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*3-ASIGNAR VALORES POR DEFECTO PARA PARÁMETROS DE UNA F(X)*/ 
+//------------------------------------------------------------------
+console.log('\n3-ASIGNAR VALORES POR DEFECTO PARA PARÁMETROS DE UNA F(X)');
+
+// #region
+
+// Sumar 2 parámetros, siendo el 2º siempre 100
+const incrementar = (numero,valorIncrementacion = 100) => numero + valorIncrementacion;
+
+console.log("100 + la cantidad ingresada como argumento (25): " + incrementar(25));
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*4-OPERADOR REST: MIFUNCION(...ARRAY){ PARA COGER CUALQUIER Nº DE ARGUMENTOS QUE PASAMOS COMO PARÁMETROS*/ 
+//------------------------------------------------------------------
+console.log('\n4--OPERADOR REST: MIFUNCION(...ARRAY){ PARA COGER CUALQUIER Nº DE ARGUMENTOS QUE PASAMOS COMO PARÁMETROS');
+
+// #region
+
+//Cuando no sabemos cuantos argumentos tendrá la F(x)
+function miFuncionConRest (...array) {
+    console.log(array);
+}
+
+miFuncionConRest(1,2,3,"convierte (...array) en un array con todos los argumentos que metamos en la función");
+
+// Sumar los elementos de un array usando el método reduce((acumulador,valor actual) => acumulador + valor actual, acumulador comienza en 0 )
+const sumar = (x,y,z) => {
+    const arrays = [x, y, z];
+    return arrays.reduce((a,b) => a + b, 0);
+};
+
+//Sumamos los elementos del array [1,2,3]
+console.log(sumar (1,2,3)); // Muestra 6
+
+
+//Variante con operador rest
+// Sumar los elementos de un array usando el método reduce((acumulador,valor actual) => acumulador + valor actual, acumulador comienza en 0 )
+const sumarConRest = (...arrays) => {
+    return arrays.reduce((a,b) => a + b, 0);
+};
+
+//Sumamos los elementos del array [1,2,3]
+console.log(sumar (1,2,3)); // Muestra 6
+
+// #endregion
+
+
+//-------------------------------------------------------------------
+/*5-OPERADOR SPREAD:LLAMADA FUNCION(...NOMBREVARIABLE) PARA DESCOMPONER ELEMENTOS DE UN ARRAY*/ 
+//------------------------------------------------------------------
+console.log('\n5-OPERADOR SPREAD: LLAMADA FUNCION(...NOMBREVARIABLE) PARA DESCOMPONER ELEMENTOS DE UN ARRAY');
+
+// #region
+
+//Sumar elementos de un array
+const numeros = [10,100,1000];
+
+function sumarSinSpread (x,y,z) {
+    return x + y + z;
+}
+
+//Forma simple de sumar elementos de un array pasándolos como argumento
+console.log(sumarSinSpread (numeros[0],numeros[1],numeros[2] )); //Muestra 1110.INVIABLE hacer esto si son 5000 elementos el array
+
+
+//Variante con operador spread
+const numerosConSpread = [10,100,1000];
+
+function sumarConSpread (x,y,z) {
+    console.log(x);
+    console.log(y);
+    console.log(z);
+    return x + y + z;
+}
+
+//Forma simple de sumar elementos de un array pasándolos como argumento
+console.log(sumarConSpread(...numerosConSpread)); //Muestra 1110, 
+
+// #endregion
+
+// #endregion Seccion 12
