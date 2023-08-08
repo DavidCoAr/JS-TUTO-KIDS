@@ -507,7 +507,7 @@ console.log(`Voy a comprar ${miListadoCompras[1][1]} unidades de ${miListadoComp
 
 //SECCIÓN 3:FUNCIONES
 console.log("\n------SECCIÓN 3:FUNCIONES------");
-//#region SOBJETOSeccion 3
+//#region Seccion 3
 
 //------------------------------------------------------------------
 /*1-FUNCIONES*/ 
@@ -602,7 +602,7 @@ console.log("Caso 3: Después de la F(x) " + miVariableGlobal);
 // #endregion
 
 //------------------------------------------------------------------
-/*4-ÁMBITO LOCAL Y VARIABLES LOCALES*/ 
+/*4-ÁMBITO (ALCANCE) LOCAL Y VARIABLES LOCALES*/ 
 //------------------------------------------------------------------
 console.log("\n4-ÁMBITO LOCAL Y VARIABLES LOCALES"); 
 
@@ -624,7 +624,7 @@ miFuncionConVariableLocal ();
 // #endregion
 
 //------------------------------------------------------------------
-/*5-PRIORIDAD VARIABLE LOCAL >>> VARIABLE GLOBAL EN AMBITO LOCAL*/ 
+/*5-PRIORIDAD VARIABLE LOCAL >>> VARIABLE GLOBAL EN AMBITO (ALCANCE) LOCAL*/ 
 //------------------------------------------------------------------
 console.log("\n5-PRIORIDAD VARIABLE LOCAL >>> VARIABLE GLOBAL EN AMBITO LOCAL"); 
 
@@ -2515,3 +2515,208 @@ console.log("Comparando a (4) y b (2) con múltiples ternarios: " + compararNume
 // #endregion 
 
 // #endregion Seccion 10
+
+
+//SECCIÓN 11:VARIABLES-LET-CONST,OBJETO INMUTABLE
+console.log("\n------SECCIÓN 11:VARIABLES-LET-CONST------");
+// #region Seccion 11
+
+//-------------------------------------------------------------------
+/*1-VAR Vs LET*/ 
+//------------------------------------------------------------------
+console.log('\n1-VAR Vs LET');
+
+// #region
+//VAR ADMITE declarar la MISMA VARIABLE VARIAS veces
+
+var campistaVar = "1º declaración VAR";
+var campistaVar = "2º declaración VAR";
+
+console.log(campistaVar); //Mostrará la 2º declaración
+
+//LET NO ADMITE declarar la MISMA VARIABLE VARIAS veces
+
+let campistaLet = "1º declaración LET";
+//let campistaLet = "2º declaración LET";
+campistaLet = "No se puede declarar 2 veces una variable LET";
+console.log(campistaLet); //Mostrará que el let ya ha sido declarado
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*2-ÁMBITO (ALCANCE) DE VAR Vs LET*/ 
+//------------------------------------------------------------------
+console.log('\n2-ÁMBITO DE VAR Vs LET');
+
+// #region
+
+//AMBITO (ALCANCE) VAR ES GLOBAL (DECLARADA FUERA DE F(X)), O LOCAL(DENTRO DE F(X))
+var variableGlobal = "Soy una variable Global";
+
+//Acceso a la variable Global VAR
+console.log(variableGlobal + " EN UN AMBITO GLOBAL/RAÍZ");
+
+function miFuncion () {
+    console.log(variableGlobal + " DENTRO DE UNA F(X)");
+
+    var variableLocal = "Soy una variable Local"; // Accesible SOLO  en AMBITO LOCAL(dentro de la F(X))
+    console.log(variableLocal + " DENTRO DE UNA F(X)");
+
+}
+
+//Acceso a la variable Global VAR dentro un de una F(X) (ámbito local)
+miFuncion();
+
+//Acceso a la variable Global VAR
+console.log(variableGlobal + " EN UN AMBITO GLOBAL/RAÍZ");
+
+//ERROR al intentar acceder a la variable Local VAR
+//console.log(variableLocal + "EN UN AMBITO GLOBAL/RAÍZ"); //Error:  no está definida la variable
+
+//AMBITO (ALCANCE) LET ES DE BLOQUE (DECLARADA DENTRO  DEL BLOQUE DENTRO DE F(X), BUCLE,CONDICIONAL)
+//Un bloque de código generalmente está delimitado por llaves {}
+
+//Bloque dentro de un IF
+if (true) {
+    let mensaje = "Hola desde el bloque if";
+    console.log(mensaje);  // "Hola desde el bloque if"
+  }
+  
+  // console.log(mensaje);  // Generaría un error, ya que "mensaje" no está en este alcance
+
+//Bloque dentro de un bucle  
+for (let i = 0; i < 3; i++) {
+  console.log(i);  // Imprimirá 0, 1, 2 en cada iteración
+}
+
+// console.log(i);  // Generaría un error, ya que "i" no está en este alcance
+
+//Bloque dentro de una F(x)
+function ejemploLet() {
+    let variableLocal = "Soy local";
+    console.log(variableLocal);  // "Soy local"
+}
+ejemploLet();   
+// console.log(variableLocal);  // Generaría un error, ya que "variableLocal" no está en este alcance
+
+//Anidamiento Bloques
+if (true) {
+  let x = 10;
+  if (x === 10) {
+    let y = 20;
+    console.log(y);  // Imprimirá 20
+  }
+  // console.log(y);  // Generaría un error, ya que "y" no está en este alcance
+}
+
+// console.log(x);  // Generaría un error, ya que "x" no está en este alcance
+
+//Bloque de F(x) y Bloque dentro de otro Bloque
+function ejemploLet2() {
+  let variableFuncion = "Soy de la función";
+  if (true) {
+    let variableBloque = "Soy del bloque";
+    console.log(variableFuncion);  // "Soy de la función"
+    console.log(variableBloque);   // "Soy del bloque"
+  }
+  console.log(variableFuncion);  // "Soy de la función"
+  // console.log(variableBloque);  // Generaría un error, ya que "variableBloque" no está en este alcance
+}
+
+ejemploLet2();
+
+//Declarada en el AMBITO GLOBAL, = que VAR:ACCESIBLE EN TODO EL PROGRAMA
+let fueraDelBloque = "Visible en todo el ámbito";
+
+if (true) {
+  let dentroDelBloque = "Solo visible en este bloque";
+  console.log(fueraDelBloque);  // "Visible en todo el ámbito"
+  console.log(dentroDelBloque); // "Solo visible en este bloque"
+}
+
+console.log(fueraDelBloque);  // "Visible en todo el ámbito"
+// console.log(dentroDelBloque); // Generaría un error, ya que "dentroDelBloque" no está en este alcance
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*3-CONST:NO SE PUEDE REASIGNAR SU VALOR TRAS ASIGNARSE*/ 
+//------------------------------------------------------------------
+console.log('\n3-CONST:NO SE PUEDE REASIGNAR SU VALOR TRAS ASIGNARSE');
+
+// #region
+//No admite declarar la variable sin inicializar
+//const miConstate2;
+
+const miConstate = "Soy una variable CONST, no se me puede REASIGNAR";
+
+console.log(miConstate);
+
+//Da error al intentar mofidicar el valor la variable tipo CONST
+//miConstate = "TE DIJE QUE NO SE ME PUEDE REASIGNAR, SOY TIPO CONST";
+
+//Ejemplo con F(X) para calcular el área de un círculo
+function calcularAreaCirculo (radio){
+    const pi = 3.14;
+    if (radio < 0) {
+        return undefined;
+    } 
+    return pi * (radio ** 2); //puedes poner el return dentro de un ELSE
+}
+
+console.log(calcularAreaCirculo(1));
+// #endregion
+
+//-------------------------------------------------------------------
+/*4-CONST:MUTAR ARRAY DECLARADO CON CONST*/ 
+//------------------------------------------------------------------
+console.log('\n4-CONST:MUTAR ARRAY DECLARADO CON CONST');
+
+// #region
+const arrayConst = [1,2,3, "NO SE PUEDE REASIGNAR UNA VARIABLE CONST"];
+console.log (arrayConst);
+//ERROR:No se puede reeasignar a una variable const
+//arrayConst = ["NO SE PUEDE REASIGNAR UNA VARIABLE CONST",2,3];
+
+//Pero podemos modificar los elementos del array asignado
+
+arrayConst[0] = "PERO SE PUEDE MODIFICAR los elementos del array asignado";
+arrayConst[3] = 4;
+console.log (arrayConst);
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*5-CREAR UN OBJETO INMUTABLE*/ 
+//------------------------------------------------------------------
+console.log('\n5-CREAR UN OBJETO INMUTABLE');
+
+// #region
+
+let consolas = {
+    "Ps5": "Basura",
+    "Series X": "Meh",
+    "Series S": "Top"
+};
+
+//Agrego propiedad "Switch"
+consolas.switch = "Mala";
+
+//Borro propiedad Series S
+delete consolas["Series S"]; //Con espacio MUST notación corchete
+delete consolas.Ps5;
+
+console.log(consolas);
+
+//OBJECT.FREEZE () hace inmutable a un objeto => no se le puede agregar props, ni modificar valores
+Object.freeze(consolas);
+
+//No me deja agregar la propiedad "Switch2" y borrar la propiedad switch
+consolas.switch2 = "Muy mala";
+delete consolas.switch;
+
+console.log("Object.freeze no me deja modificar el objeto: " + JSON.stringify(consolas));
+
+// #endregion
+
+// #endregion Seccion 11
