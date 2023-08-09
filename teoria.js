@@ -2723,7 +2723,7 @@ console.log("Object.freeze no me deja modificar el objeto: " + JSON.stringify(co
 
 
 
-//SECCIÓN 12:F(X) FLECHA
+//SECCIÓN 12:F(X) FLECHA, VALOR PARÁMETRO POR DEFECTO, OPERADOR REST Y SPREAD
 console.log("\n------SECCIÓN 11:VARIABLES-LET-CONST------");
 // #region Seccion 12
 
@@ -2915,3 +2915,265 @@ console.log(sumarConSpread(...numerosConSpread)); //Muestra 1110,
 // #endregion
 
 // #endregion Seccion 12
+
+
+
+//SECCIÓN 13:SINTAXIS DE DESESTRUCTURACIÓN
+console.log("\n------SECCIÓN 13:SINTAXIS DE DESESTRUCTURACIÓN------");
+// #region Seccion 13
+
+//-------------------------------------------------------------------
+/*1-SINTAXIS DE DESESTRUCTURACIÓN: ASIGNAR LAS PROP DE UN OBJ A VARIABLES*/ 
+//------------------------------------------------------------------
+console.log('\n1-SINTAXIS DE DESESTRUCTURACIÓN: ASIGNAR LAS PROP DE UN OBJ A VARIABLES');
+
+// #region
+
+//Asignar las propiedades del objeto usuario a variables
+const usuario = {
+    nombreUsuario: "Gino Smith",
+    edad: 34
+};
+
+//ANTES Si tuviéramos 100 prop, 100 veces este "proceso a mano" de creación de variables
+//const nombre = usuario.nombre;
+//const edad = usuario.edad;
+
+//NOW Se puede hacer en una sola línea: const {nombre prop1, nombre prop 2} = nombreobjeto 
+const {nombreUsuario,edad} = usuario;
+
+console.log("Prop nombre asignada a variable nombre: " + nombreUsuario);
+console.log("Prop edad asignada a variable edad: " + edad);
+
+//Asignar las propiedades del objeto coordenadas a variables
+
+var coordenadas = {
+    x: 4,
+    y: 2,
+    z: 3
+};
+
+//Forma antigua
+//const x = coordenadas.x;
+//const y = coordenadas.y;
+//const z = coordenadas.z;
+
+//Forma rápida
+const {x, y, z} = coordenadas;
+
+console.log("Prop x asignada a variable x: " + x);
+console.log("Prop x asignada a variable y: " + y);
+console.log("Prop x asignada a variable z: " + z);
+
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*2-SINTAXIS DE DESESTRUCTURACIÓN CON OBJETOS ANIDADOS*/ 
+//------------------------------------------------------------------
+console.log('\n2-SINTAXIS DE DESESTRUCTURACIÓN CON OBJETOS ANIDADOS');
+
+// #region
+
+//asignar edad y correo del objeto anidado a variables individuales
+const usuarioObj = {
+    Dave: {
+        perros: 26,
+        correo: "123@mail.com"
+    }
+};
+
+//FORMA ANTIGUA y laboriosa
+const numPerros = usuarioObj.Dave.perros;
+console.log(numPerros);
+const correoUser = usuarioObj.Dave.correo;
+console.log(correoUser);
+
+//FORMA MODERNA
+//{nombre Prop donde está obj anidado: {nombre prop 1, nombre prop 2}} = nombre objeto
+const {Dave: {perros, correo}} = usuarioObj;
+
+console.log("Prop perros del objeto anidado asignado a variable perros: "+ perros);
+console.log("Prop correo del objeto anidado asignado a variable correo: "+ correo);
+
+//FORMA MODERNA pero CAMBIANDO el nombre de las propiedades
+//{nombre Prop donde está obj anidado: {nombre prop 1, nombre prop 2}} = nombre objeto
+const {Dave: {perros: perrosDave, correo: correoDave}} = usuarioObj;
+
+console.log("Prop perros del objeto anidado asignado a variable perrosDave: "+ perrosDave);
+console.log("Prop correo del objeto anidado asignado a variable correoDave: "+ correoDave);
+
+
+// Asignar la prop minima y maxima del objeto anidado a variables
+
+const pronosticoLocal = {
+    "ayer": {
+        minima: 33,
+        maxima: 55
+    },
+    "hoy": {
+        minima: 15,
+        maxima: 88
+    }
+};
+
+//FORMA ANTIGUA
+
+const tempMinima = pronosticoLocal.ayer.minima; //Notación de punto
+console.log(tempMinima);
+
+const tempMaxima = pronosticoLocal["ayer"]["maxima"]; //Notación de corchete
+console.log(tempMaxima);
+
+//FORMA MODERNA
+const {ayer: {minima,maxima}} = pronosticoLocal;
+console.log("Prop minima del objeto anidado asignado a variable minima: " + minima);
+console.log("Prop maxima del objeto anidado asignado a variable minima: " + maxima);
+
+const {hoy: {minima: temperaturaMin,maxima: temperaturaMax}} = pronosticoLocal;
+console.log("Prop minima del objeto anidado asignado a variable temperaturaMin: " + temperaturaMin);
+console.log("Prop maxima del objeto anidado asignado a variable temperaturaMax: " + temperaturaMax);
+// #endregion
+
+//-------------------------------------------------------------------
+/*3-SINTAXIS DE DESESTRUCTURACIÓN CON ARRAYS*/ 
+//------------------------------------------------------------------
+console.log('\n3-SINTAXIS DE DESESTRUCTURACIÓN CON ARRAYS');
+
+// #region
+
+//Asignar el 5º y los 3 primeros valores del array [10, 100 , 1000, "No voy asignar este valor a una variable",50000] a variables
+var pos0;
+var pos1;
+var pos2;
+var pos4;
+
+//Si te salta una posición del array => pones solo un , y ninguna variable
+[pos0,pos1,pos2,,pos4] = [10, 100 , 1000, "No voy asignar este valor a una variable",50000];
+
+console.log ("Valor posición 0 array asignado a var pos0: " + pos0);
+console.log ("Valor posición 1 array asignado a var pos1: " + pos1);
+console.log ("Valor posición 2 array asignado a var pos2: " + pos2);
+console.log ("Valor posición 4 array asignado a var pos4: " + pos4);
+
+
+//Intercambiar los valores de 2 variables
+
+var a = "Valor variable a";
+var b = "Valor variable b";
+
+[b,a] = [a,b];
+
+console.log("El valor de var A: " + a);
+console.log("El valor de var B: " + b);
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*4-SINTAXIS DE DESESTRUCTURACIÓN CON EL OPERADOR REST:REASIGNAR UN ARRAY EN VARIAS VARIABLES*/ 
+//------------------------------------------------------------------
+console.log('\n4-SINTAXIS DE DESESTRUCTURACIÓN CON EL OPERADOR REST:REASIGNAR UN ARRAY EN VARIAS VARIABLES');
+
+// #region
+
+// Tenemos el array [1,2,"10", "100", "1000"]
+    // 1 lo asignamos a variable a
+    // 2 lo asignamos a variable b
+    // Resto elementos los juntamos todos en un array (var array) con ...array
+
+var a;
+var b;
+var array;
+
+[a,b, ...array] = [1,2,"10", "100", "1000"];
+console.log("Variable a: " + a);
+console.log("Variable b: " + b);
+console.log("Variable array al usar operador rest: " + array);
+
+
+// Remover los 3 primeros elementos del arrayIncial [1,2,3,4,5]
+    //Retornar arrayNuevo (agrupará en un array 4 y 5) de la F(X) que usa arrayInicial como argumento
+    //Usar arrayFinal para asignarse el resultado de la F(x)
+
+const arrayInicial = [1,2,3,4,5];
+console.log("Array inicial: " + arrayInicial);
+
+function remover3PrimerosElementos (array) {
+    var arrayNuevo; //También vale declarando 1º arrayNuevo
+    //Sintaxis de desestructuración:se salta los 3 primeros elementos
+    [, , , ...arrayNuevo] = array; // ...arraynuevo agrupo 4 y 5 en un array
+
+    //Sintaxis de desestructuración
+    /*var [, , , ...arrayNuevo] = array;*/ //Forma alternativa declarar var arrayNuevo
+    return arrayNuevo;
+}
+
+const arrayFinal = remover3PrimerosElementos(arrayInicial);
+console.log("Removidos los 3 primeros elementos: " + arrayFinal);
+
+// #endregion
+
+//-------------------------------------------------------------------
+/*5-SINTAXIS DE DESESTRUCTURACIÓN: PASAR OBJETO COMO ARGUMENTO DE UNA F(X)*/ 
+//------------------------------------------------------------------
+console.log('\n5-SINTAXIS DE DESESTRUCTURACIÓN: PASAR OBJETO COMO ARGUMENTO DE UNA F(X)');
+
+// #region
+
+var nuevoPerfilCliente = {
+    nombre: "Dca",
+    edad: 34,
+    nacionalidad: "Española",
+    ubicacion: "España"
+};
+
+// F(X) que actualiza los valores de las propiedades del objeto nuevoPerfilCliente
+
+//Descomponiendo el objeto dentro de la F(x)
+const actualizarPerfil = (infoPerfil) => {
+    console.log("Objeto nuevoPerfilCliente: " + JSON.stringify(infoPerfil));
+    const {nombre, edad, nacionalidad,ubicacion} = infoPerfil;
+    console.log("Variable nombre: " + nombre);
+    console.log("Variable edad: " + edad);
+    console.log("Variable nacionalidad: " + nacionalidad);
+    console.log("Variable ubicacion: " + ubicacion);
+};
+
+actualizarPerfil(nuevoPerfilCliente);
+
+//Descomponiendo el objeto al pasar sus propiedades como parámetro F(x)
+const actualizarPerfil2 = ({nombre, edad, nacionalidad, ubicacion }) => {
+   
+    console.log("Variable nombre: " + nombre);
+    console.log("Variable edad: " + edad);
+    console.log("Variable nacionalidad: " + nacionalidad);
+    console.log("Variable ubicacion: " + ubicacion);
+};
+
+actualizarPerfil2(nuevoPerfilCliente);
+
+
+// Calcular el punto medio entre prop max y min del objeto estadisticas
+
+const estadisticas = {
+    max: 55,
+    desviacionEstandar: 4,
+    mediana: 33,
+    moda: 23,
+    min: -0.75,
+    promedio: 35
+}
+
+//Forma 1
+const puntoMedio = (stats) => (stats.max + stats.min) / 2.0;//estadisticas.max + estadisticas.min
+
+console.log("El punto medio es: " + puntoMedio(estadisticas));
+
+//Forma 2 pasando las propiedades como parámetros de la F(x)
+const puntoMedio2 = ({max, min}) => (max + min) / 2.0;//estadisticas.max + estadisticas.min
+
+console.log("El punto medio es: " + puntoMedio2(estadisticas));
+
+// #endregion
+
+// #endregion Seccion 13
