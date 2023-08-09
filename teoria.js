@@ -3177,3 +3177,195 @@ console.log("El punto medio es: " + puntoMedio2(estadisticas));
 // #endregion
 
 // #endregion Seccion 13
+
+
+//SECCIÓN 14: PLANTILAS LITERALES:CONCATENACIÓN ++ con ``
+console.log("\n------SECCIÓN 14: PLANTILAS LITERALES:CONCATENACIÓN ++ con ``------");
+// #region Seccion 14
+
+// #region 
+
+/*
+CARACTERÍSTICAS:
+- Se usa ` acento invertido
+- Pueden contener " y ' 
+- Las líneas se preservan como se escriben en el código
+- para reemplazar una variable => ${variable}
+- Dentro de ${variable} se pueden escribir expresiones
+
+*/
+
+const nickName = "Alice";
+const gatetes = 30;
+const mensaje = `Hola, soy ${nickName} y tengo ${gatetes} años.`;
+
+console.log(mensaje);
+
+
+var arrayPlantillaLiteral = [1, 2, 3, 4];
+
+console.log(`El array es ${arrayPlantillaLiteral}`);
+console.log(`El array es ${JSON.stringify(arrayPlantillaLiteral)}`);
+
+var personaSaludo = {
+    nombre: "Tino Casal",
+    edad: 12
+}
+
+console.log(`Hola ${personaSaludo.nombre}, tienes ${personaSaludo.edad} años`);
+
+// #endregion 
+
+// #endregion Seccion 14
+
+
+//SECCIÓN 15: CREAR OBJETOS DE FORMA CONCISA, MÉTODOS, CLASES, GETTERS Y SETTERS
+console.log("\n------SECCIÓN 15: CREAR OBJETOS DE FORMA CONCISA------");
+// #region Seccion 15
+
+//-------------------------------------------------------------------
+/*1-CREAR OBJETOS DE FORMA CONCISA*/ 
+//------------------------------------------------------------------
+console.log('\n1-CREAR OBJETOS DE FORMA CONCISA');
+
+// #region
+
+//Forma concisa 
+//Pasamos los valores de las propiedades como argumentos
+const crearPersona = (nombre,edad,idioma) => {
+    return {
+        nombrePersona: nombre,
+        edadPersona: edad,
+        idiomaPersona: idioma
+    }
+};
+
+console.log(crearPersona("Luca",55 , "Italiano"))
+
+//Forma muy concisa, pero no se pueden cambiar los nombres de las propiedades
+//Pasamos los valores de las propiedades como argumentos 
+const crearPersona2 = (nombre,edad,idioma) => ({nombre, edad, idioma}); //Podemos quitar el return al ser una sola expresión
+
+console.log(crearPersona2("Loto",30 , "Japonés"))
+
+// #endregion
+
+
+//-------------------------------------------------------------------
+/*2-MÉTODOS: F(x) DENTRO DE OBJETOS*/ 
+//------------------------------------------------------------------
+console.log('\n2-MÉTODOS F(x) DENTRO DE OBJETOS');
+
+// #region
+
+const persona = {
+    nombre: "Lili",
+    apellidos: "Drake",
+    presentarse: function(){ //this.nombre equivale a persona.nombre
+        return `Hola, mi nombre es ${this.nombre} ${this.apellidos}`
+    }
+}
+
+console.log(persona.presentarse());
+
+// Variante más concisa
+const persona2 = {
+    nombre: "Drako",
+    apellidos: "Malmoy",
+    presentarse2 (){
+        return `Hola, mi nombre es ${this.nombre} ${this.apellidos}`
+    }
+}
+
+console.log(persona2.presentarse2());
+
+// #endregion
+
+
+//-------------------------------------------------------------------
+/*3-CLASE:"PLANTILLA DE UN OBJETO"*/ 
+//------------------------------------------------------------------
+console.log('\n3-CLASE:"PLANTILLA DE UN OBJETO"');
+
+// #region
+
+//Creamos una clase que tiene por propiedad el planeta destino del transbordador
+class TransbordadorEspacial { //El nombre de las clases va en MAYÚSCULA la primera letra
+    constructor (nombrePlaneta) {
+        this.planetaDestino = nombrePlaneta; //nombrePlaneta lo pasamos entre () en TransbordadorEspacial ("Júpiter")
+    }
+}
+
+// Creamos objeto zeus con new, pasándole Jupiter como nombrePlaneta para asignarle la propiedad planetaDestino
+var zeus = new TransbordadorEspacial ("Júpiter")
+console.log(zeus);
+console.log("Objeto Zeus: " + JSON.stringify(zeus));
+console.log("Propiedad planetaDestino del objeto zeus: " + zeus.planetaDestino);
+
+// Creamos objeto apolo con new, pasándole Marte como nombrePlaneta para asignarle la propiedad planetaDestino
+var apolo = new TransbordadorEspacial ("Marte")
+console.log("Propiedad planetaDestino del objeto apolo: " + apolo.planetaDestino);
+
+
+//Creamos una clase Mascota que tiene por propiedades nombre (nombreMascota), edad (edadMascota), muertes(muertesMascota)
+
+class Mascota {
+    constructor(nombre, edad, muertes) { //los valores que asignamos (en new Mascota("Isío", 13, 100)) a las propiedades
+        this.nombreMascota = nombre; //nombreMascota es una propiedad
+        this.edadMascota = edad; //edadMascota es una propiedad
+        this.muertesMascota = muertes; //muertesMascota es una propiedad
+    }
+}
+
+var miGatete = new Mascota("Isío", 13, 100);
+console.log(miGatete);
+console.log("Mi gato: " + JSON.stringify(miGatete));
+console.log("Mi gato se llama " + miGatete.nombreMascota + " y tiene " + miGatete.edadMascota + " años" );
+
+// #endregion
+
+
+//-------------------------------------------------------------------
+/*4-GETTERS Y SETTERS: F(x) INTERMEDIARIOS PARA PROTEGER LOS DATOS DE UN OBJETO"*/ 
+//------------------------------------------------------------------
+console.log('\n4-GETTERS Y SETTERS: F(x) INTERMEDIARIOS PARA PROTEGER LOS DATOS DE UN OBJETO"');
+
+// #region
+
+//GETTERS: método para acceder al valor de una propiedad privada (que no queremos que se modifique)
+//SETTERS: método para actualizar el valor de una propiedad de manera segura no admitiendo valores inválidos
+class Libro {
+    constructor (autor) {
+        this._autorLibro = autor;//_ nos indica que es una propiedad privada
+    }
+    //GET para acceder indirectamente al valor de una propiedad privada _autorLibro 
+    get  autorLibroProtegido() { //obtenemos _autorLibro, indirectamente, a partir de la F(X) llamada autorLibroProtegido
+        return  this._autorLibro;
+    }
+    //SET para actualizar el valor de una propiedad de manera segura
+    set  autorLibroProtegido(nuevoAutor)  {
+        if (nuevoAutor != "Adolf Hitler") { 
+            this._autorLibro = nuevoAutor;
+        } else { //Si actualiamos nuevoAutor a Hitler, mostrará un sms y NO ACTUALIZARÁ
+            console.log("No se puede llamar a Adolf Hitler por su nombre, da mala suerte")
+        }
+       
+    }
+}
+
+const miLucha = new Libro ("Alemán venido arriba");
+
+console.log(miLucha);
+console.log("El autor del libro 'Mi Lucha': " + miLucha.autorLibroProtegido);
+
+//Actualizamos el nombre del autor a un nombre de autor válido
+miLucha.autorLibroProtegido = "Adolfo para los amigos";
+console.log("Pero es más conocido como " + miLucha.autorLibroProtegido);
+
+//INTENTAMOS Actualizar el nombre del autor a un nombre de autor INVÁLIDO
+miLucha.autorLibroProtegido = "Adolf Hitler";
+console.log("Pero es más conocido como " + miLucha.autorLibroProtegido); //MUESTRA UN SMS DE QUE NO ES POSIBLE
+
+// #endregion
+
+// #endregion Seccion 15
